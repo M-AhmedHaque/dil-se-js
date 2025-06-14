@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h1 id="heading1" class="heading">Learning DIL say DOM <span style="display:none"> Hui hui</span></h1>
+        <p id="heading1Para" class="para">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem animi error, minima distinctio voluptate officia quia omnis sunt a corporis.</p>
+    </div>
+</body>
+</html>
+
+const title = document.getElementById('heading1')
+
+title.innerText (shows only visible content)
+
+title.textContent (shows every content)
+
+title.innerHTML (also supports html tags) => 'Learning DIL say DOM <span style="display:none"> Hui hui</span>'
+
+document.querySelector('h1')  (selects first h1)
+<!-- <h1 id=​"heading1" class=​"heading">​"Learning DIL say DOM "<span style=​"display:​none">​ Hui hui​</span>​</h1>​ -->
+
+document.querySelector('#heading1') (for ID)
+<!-- <h1 id=​"heading1" class=​"heading">​…​</h1>​ -->
+
+document.querySelector('.heading')  (for class)
+<!-- <h1 id=​"heading1" class=​"heading">​…​</h1>​ -->
+
+document.querySelector('input[type=password]')  will select input tag with password type
+
+querySelectorAll (it can select mutiple tags like h1 li etc and returns nodeList, which can be iterated using forEach as it has only forEach in its prototype)
+
+-> DOM[All Document elements are objects in javascript] 
+    -> window is a global object which contains document object
+    -> console.dir(document) gives the document object as it is
+    -> document.baseURI - give the base url
+    -> document.getElementById() - used to select the element with id
+
+    -> targeting the elements [elements ko catch karna]
+    -> document.getElementByClassName() //returns HTML collection
+
+    -> element.className - gives the class name [used in react]
+    -> element.id = gives the id
+    -> element.getAttribute('att_name')
+    -> element.setAttribute('att_name','att_value') - overwrites the pre-existing attribute
+    -> element.style.color = 'red'
+
+    -> element.textContent =  gives the display:none element too
+    -> element.innerText = does not give the display:none elements
+    -> element.innerHTML = gives the html too
+
+    -> element.querySelector('any') = it can take any selector like we give in css
+    -> We can also use querySelector or any selecting method on any element which contains some child nodes
+    -> We can use forEach on NodeList which comes from querySelectorAll()
+    -> NODELIST AND HTML COLLECTION are not pure arrays but nodelist has forEach() method
+    -> Html collection do not have forEach() so it needs to be converted to array first
+    -> Both nodelist & htmlcollection can be converted into array by using Array.from(nodeList/HtmlCollection)
+    const tempClass = document.getElementByClass('list items')
+    Array.from(tempClass) , now you can use it like array

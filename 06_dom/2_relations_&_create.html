@@ -1,0 +1,58 @@
+<!-- // we will focus on relations, parent child, child parent, child child -->
+<!-- // creating an element, how to show any element after getting element from backend -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+ </head>
+ <body class="body">
+    <div class="parent">
+        <div class="days">Monday</div>
+        <div class="days">Tuesday</div>
+        <div class="days">Wednesday</div>
+        <div class="days">Thursday</div>
+        <div class="days">Friday</div>
+        <div class="days">Saturday</div>
+        <div class="days">Sunday</div>
+    </div>
+ </body>
+ </html>
+
+ <script>
+    console.log('hello')
+    const parent = document.querySelector('.parent')
+    console.log(parent)
+    console.log(parent.children) //gives htmlCollection of days
+
+    const body = document.querySelector('.body')
+    body.style.backgroundColor = '#212121'
+    body.style.color = 'white'
+    
+
+    const children = parent.children
+    children[0].style.color = 'orange'
+
+    for (let index = 0; index < children.length; index++) {
+        console.log(children[index].innerHTML)
+        children[index].style.color = 'orange'
+    }
+
+    console.log(parent.firstElementChild)
+    console.log(parent.lastElementChild)
+
+    // by now I did parent child operation
+    // but querySelector is an expensive operation
+    // so we try to reduce its use, by making the use of child to parent relation, child to child relation
+    const oneChild = document.querySelector('.days')
+    console.log(oneChild)
+    console.log(oneChild.parentElement) //access parent
+    console.log(oneChild.nextElementSibling) //access other child, we get tuesday
+
+    const childParent = oneChild.parentElement
+    console.log(childParent.childNodes) //show all the nodes, it includes a next line node and a div tag node for each days, so total would 15
+
+
+
+ </script>

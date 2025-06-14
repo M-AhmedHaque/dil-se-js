@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+
+<script>
+    const div = document.createElement('div')
+    div.id = 'main'
+    div.className= 'main div'
+    div.title = 'title ha'
+    // or
+    div.setAttribute('title','Title is title')
+    div.style.backgroundColor = 'orange'
+    div.style.padding = '20px'
+    div.style.borderRadius = '20px'
+    // div.innerText = 'Solving Problem with Code'
+    // people say its not good because it access innertext, overwrites, and then send update, so takes RTT
+
+    // so as we so earlier there is node of text, so we create it manually then append that in div
+    const text = document.createTextNode('Solving Problem with Code')
+    div.appendChild(text)
+
+    //now appending this div to document
+    document.body.appendChild(div)
+
+    console.log(div)
+</script>
