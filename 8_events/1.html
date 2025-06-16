@@ -1,0 +1,92 @@
+<!-- // in JS events are executed sequentially, apart from some cases such as asynchronous programming
+// likewise there are events in browser, which occurs only when something happens
+// like onClick, if we are not using react injecting onClick in html tag is bad, creates problem when we scale
+// so its better to do it using scripting, but using events -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>htnml Events </title>
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing image</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
+</body>
+<script>
+    document.getElementById('owl').onclick = function(){
+        console.log('ollo clicked')
+        alert('ollo')
+    } //doing this also not a good, there is no problem in it but it provides less features
+
+    // NOW LEts talh about the latest and greatest approach
+    document.getElementById('river').addEventListener('click',function(event){
+        console.log('river clicked')
+        alert('river')
+        //we can stop events from propagation like this
+        event.stopPropagation() //now ul wala event nhi hoga only iff ul is false
+    },false) //if i give true here then river is inside UL so it will affect anything inside it, so still first UL then river in our case
+     //so there are three arguments 
+    // 1. type of event 
+    // 2. function that will tell what do 
+    // 3. true or false, it controls event propagation, false = bubbling and true = capturing
+    // this applies when multiple events can trigerred on single action like click
+    // in this example we will add event on ul and on owl, so when clicking on owl 2 events will be triggered
+    // bubbling: go from bottom to top means => owl wala then ul wala
+    // capturing: go from top to bottom
+    // this is propagation of events, we can also stop them
+
+    document.getElementById('images').addEventListener('click',function(){ 
+        console.log('Ul clicked')
+        alert('Ul clicked')
+    } , false)//if i give true here then river is inside it and now we will go in capture mode, so first UL then river
+
+    //most importantly we get an event object, that provides us with alot of attributes and functions like
+    // type, timestamp, defaultPrevented
+    // target, toElement, srcElement, currentTarget,
+    // clientX, clientY, screenX, screenY
+    // altkey, ctrlkey, shiftkey, keyCode
+
+    document.getElementById('google').addEventListener('click',function(event){
+        event.preventDefault() // issay ab link click karnay par gugal par nhi jaye ga
+        event.stopPropagation()
+        console.log('gologolo clicked')
+    },false)
+
+    //task write code which would ghayad karday image ko jispar click kia 
+    //first select the ul which will have all the li of img
+    const ul = document.querySelector('#images')
+    console.log(`Ul selected` ,ul)
+
+    //add event
+    ul.addEventListener('click',function(event){
+        event.stopPropagation()
+        //we a target attribute that tell us from which tag event came
+        console.log(event.target) //now we can get the actual tag of that particaluar place we clicked inside UL : <img ... >
+        //now we will simply remove that tag by getting childNode from ul
+
+        //basically img is inside li which is inside ul, so we wann remove li which is parent of our target
+
+        //using this logic if i click on google its parent will be ul abd ul will be delted we dont wont it , so do it onlyy on img tag
+
+        if(event.target.tagName == 'IMG'){
+            const parentOfTarget = event.target.parentNode
+            parentOfTarget.remove()
+        }
+
+    },false)
+    
+
+</script>
+</html>
