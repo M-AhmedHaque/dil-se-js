@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="logo">Dil Say Code</h1>
+    <button id="stop">Stop</button>
+</body>
+</html>
+<script>
+    console.log('We will create an event like a pop-up that appears after sometime in websites for ads/offers then we will ad the functionality to stop that event from occuring')
+
+    //first lets create a kind of message
+    const showOffer = function(){
+        console.log('Flat 50% on all products')
+        //let us also change the heading
+        const logo = document.getElementById('logo')
+        logo.innerHTML = 'Flat 50% on all products'
+    }
+    
+    const offer = setTimeout(showOffer , 3000)
+    
+    //add event on button
+    const stopButton = document.getElementById('stop')
+    stopButton.addEventListener('click',function(){
+        clearTimeout(offer)
+    })
+    
+
+</script>

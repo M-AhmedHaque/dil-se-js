@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="logo">Dil Say Code</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+</body>
+</html>
+<script>
+    
+    const randomColor = function(){
+        const range = '0123456789ABCDEF'
+        let hexValue='#'
+        for (let index = 0; index < 6; index++) {
+            const randomIndex = Math.floor((Math.random()*(15-0+1)))
+            hexValue+=range[randomIndex]
+        }
+        return hexValue
+    }
+
+    let intervalID
+
+    const startInterval = function(){
+
+        intervalID = setInterval(function(){
+
+            const date = new Date()
+            
+            const color = randomColor()
+            console.log(`${color} at ${date.getTime()}`)
+            document.body.style.backgroundColor = color 
+
+        },1000)
+
+    }
+    const stopInterval = function(){
+        clearInterval(intervalID)
+    }
+
+    const startButton = document.getElementById('start')
+    const stopButton = document.getElementById('stop')
+
+    startButton.addEventListener('click',startInterval)
+    stopButton.addEventListener('click',stopInterval)
+    
+
+</script>

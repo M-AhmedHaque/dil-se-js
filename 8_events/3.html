@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="logo">Dil Say Code</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+</body>
+</html>
+<script>
+    
+    let intervalID
+
+    const startInterval = function(){
+
+        const name = "Ahmed"
+
+        intervalID = setInterval(function([name]){
+
+            const date = new Date()
+            console.log(`${name} at ${date.getTime()}`)
+
+        },2000,[name])
+
+    }
+    const stopInterval = function(){
+        clearInterval(intervalID)
+    }
+
+    const startButton = document.getElementById('start')
+    const stopButton = document.getElementById('stop')
+
+    startButton.addEventListener('click',startInterval)
+    stopButton.addEventListener('click',stopInterval)
+    
+
+</script>
