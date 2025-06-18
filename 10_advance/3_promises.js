@@ -102,7 +102,8 @@ const consumePromiseFive = async()=>{
 consumePromiseFive()
 
 
-//lets use fetch object now using .then().catch()
+//lets use fetch api now, using .then().catch()
+// if a reponse return error code 400, where will it go? resolve or reject? It goes to resove because in reject those error will go which would occur before sending request
 //fetch returns a promise 
 // just like promiseFive return in above function returns a promise
 fetch('https://api.github.com/users/hiteshchoudhary')
