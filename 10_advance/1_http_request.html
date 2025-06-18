@@ -1,0 +1,33 @@
+<!-- 
+so there are many fucntions that are not part of JS like console and document, etc but injected by runtime like nodeJS or browser
+bht say engine hain jo JS run kartay one of them is V8 engine
+tu yeh environment debugging tools(console) and api(document) provide kartay 
+-->
+<!-- 
+now lets look at api request, before fetch came, XmlHttpRequest was used, it is related to Ajax
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    HTTP requests
+</body>
+</html>
+<script>
+    const url = 'https://api.github.com/users/hiteshchoudhary'
+    const req = new XMLHttpRequest()
+    req.open('GET',url)
+    req.onreadystatechange = function(){
+        console.log(req.readyState)
+        if(req.readyState == 4){
+            const data = JSON.parse(this.responseText)
+            console.log(data)
+            console.log(data.followers)
+        }
+    }
+    req.send()
+</script>
