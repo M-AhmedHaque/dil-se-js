@@ -16,7 +16,7 @@ function menu(name,price){
 menu.prototype.display = function(){
     console.log(`${this.name} - ${this.price}`)
 }
-const chai = new menu('Chai',70)
+const chai = new menu('Chai',70)//menu() is constructor function
 console.log(chai)
 // while calling function we dont need to use prototype JS resolves it automatically because JS har nhi manti
 chai.display()
@@ -35,6 +35,7 @@ The new object is returned: After the constructor function has been called, if i
 
 */
 
+// --------------------------------------------------------------------------------------------------------------------
 
 // matlab we want to inject a function in Object of JS, so it will result in all other things getting that function because they are also made from object
 // asal prototype yahan say shru ha
@@ -65,12 +66,16 @@ Array.prototype.heyHitesh = function(){
     console.log(`Hitesh says hello`);
 }
 
+//demo: prototypal inheritance can be seen
+
 // heroPower.hitesh()
 // myHeros.hitesh()              gets from object
 // myHeros.heyHitesh()
 // heroPower.heyHitesh()         this is in array only so its not present in Object
 
-// inheritance
+
+// --------------------------------------------------------------------------------------------------------------------
+// inheritance in JS
 
 const User = {
     name: "chai",
@@ -88,18 +93,22 @@ const TeachingSupport = {
 const TASupport = {
     makeAssignment: 'JS assignment',
     fullTime: true,
+    //the syntax of inheritance is a bit wierd but this is how its done using proto,
     __proto__: TeachingSupport
 }
 
+//the syntax of inheritance is a bit wierd but this is how its done using proto,
+// teacher gets the properties and methods of User
 Teacher.__proto__ = User
 
 // modern syntax
+// teaching support main Teacher ki properties and attributes agaye
 Object.setPrototypeOf(TeachingSupport, Teacher)
 
 let anotherUsername = "ChaiAurCode     "
 
 String.prototype.trueLength = function(){
-    console.log(`${this}`);
+    console.log(`${this}`); //this kia ha jisnay call kia, yani string. this actually points to the string
     console.log(`True length is: ${this.trim().length}`);
 }
 
