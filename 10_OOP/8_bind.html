@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React</title>
+</head>
+<body>
+    <button>Button Clicked</button>
+</body>
+<script>
+    class React {
+        constructor(){
+            this.library = "React"
+            this.server = "https://localhost:300"
+
+            //requirement
+            document
+                .querySelector('button')
+                .addEventListener('click', this.handleClick.bind(this))
+
+                /*
+                If you write it without .bind(this), then:
+                The function is passed as a callback.
+                It is executed by the DOM itself — not by your class instance.
+                So in that context, this refers to the DOM element (<button>), not your class instance.
+                */
+
+        }
+        handleClick(){
+            console.log("button clicked");
+            // here you would think that we will get the properties, but we wont.
+            // if we dont use bind we will not get the context 
+            console.log(this.server); 
+            console.log(this)
+            // so these were actual issues people faced when react came, but time to time updates were made and these weer resolved
+
+            /*
+            This creates a new version of handleClick where this is permanently bound to the instance of your React class.
+            Now when the button is clicked, this.server and this.library will work correctly.
+            */
+        }
+        checkcheck(){
+            console.log(this.server)
+            console.log(this.library)
+        }
+    }
+
+    const app = new React()
+    app.checkcheck()
+    // checkcheck() is called directly on the object app, so this refers to the instance of the class React.
+    // You correctly get this.library and this.server.
+
+</script>
+</html>
